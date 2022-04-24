@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_24_115513) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_24_121616) do
   create_table "cultivars", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -33,6 +33,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_24_115513) do
     t.index ["food_id"], name: "index_fruits_on_food_id"
   end
 
+  create_table "members", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_group_id"], name: "index_members_on_user_group_id"
+  end
+
+  create_table "user_groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "cultivars", "fruits"
   add_foreign_key "fruits", "foods"
+  add_foreign_key "members", "user_groups"
 end
