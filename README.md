@@ -1,24 +1,9 @@
-# README
+# rails_association-sample
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Tested Environment
 
-Things you may want to cover:
+- Rails 7.0.2.3
 
-* Ruby version
+## Related Blog (Written in Japanese)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- [Railsで、関連付けの基本や関連付けにおけるNOT NULL制約まわりをさわってみた - メモ的な思考的な](https://thinkami.hatenablog.com/entry/2022/04/25/002354)
