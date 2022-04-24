@@ -6,7 +6,7 @@
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  fruit_id   :integer          not null
+#  fruit_id   :integer
 #
 # Indexes
 #
@@ -17,5 +17,5 @@
 #  fruit_id  (fruit_id => fruits.id)
 #
 class Cultivar < ApplicationRecord
-  belongs_to :fruit
+  belongs_to :fruit, required: false
 end
