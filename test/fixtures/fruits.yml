@@ -16,8 +16,10 @@
 #
 #  food_id  (food_id => foods.id)
 #
-class Fruit < ApplicationRecord
-  belongs_to :food
-  has_many :cultivars
-  has_many :full_cultivars, -> { where('cultivars.name LIKE "シナノ%"') }, class_name: 'Cultivar'
-end
+apple:
+  name: りんご
+  food: kudamono
+
+mandarin:
+  name: みかん
+  food: kudamono

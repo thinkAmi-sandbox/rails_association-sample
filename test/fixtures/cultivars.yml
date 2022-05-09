@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: cultivars
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  fruit_id   :integer
+#
+# Indexes
+#
+#  index_cultivars_on_fruit_id  (fruit_id)
+#
+# Foreign Keys
+#
+#  fruit_id  (fruit_id => fruits.id)
+#
+fuji:
+  name: ふじ
+  fruit: apple
+
+shinano_gold:
+  name: シナノゴールド
+  fruit: apple
+
+shinano_dolce:
+  name: シナノドルチェ
+  fruit: apple

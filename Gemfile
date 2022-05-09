@@ -28,5 +28,6 @@ group :development do
   # gem "spring"
 
   gem "annotate"
-end
 
+  gem "bullet"
+end
