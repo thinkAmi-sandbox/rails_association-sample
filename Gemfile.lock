@@ -70,6 +70,9 @@ GEM
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
     builder (3.2.4)
+    bullet (7.0.1)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     debug (1.5.0)
@@ -158,6 +161,7 @@ GEM
     timeout (0.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    uniform_notifier (1.16.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -168,6 +172,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  bullet
   debug
   puma (~> 5.0)
   rails (~> 7.0.2, >= 7.0.2.3)
