@@ -8,5 +8,8 @@
 #  updated_at :datetime         not null
 #
 class Parent < ApplicationRecord
-  has_many :children
+  before_destroy -> { puts '[Parent] before destroy' }
+  after_destroy -> { puts '[Parent] after destroy' }
+
+  has_many :children, dependent: :destroy
 end
