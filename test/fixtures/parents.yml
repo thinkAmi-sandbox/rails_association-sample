@@ -1,0 +1,15 @@
+# == Schema Information
+#
+# Table name: parents
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+parent_1:
+  name: 親1
+
+parent_2:
+  name: 親2

@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_24_133603) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_10_133636) do
+  create_table "children", force: :cascade do |t|
+    t.string "name"
+    t.integer "parent_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_children_on_parent_id"
+  end
+
   create_table "cultivars", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -33,6 +41,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_24_133603) do
     t.index ["food_id"], name: "index_fruits_on_food_id"
   end
 
+  create_table "grandchildren", force: :cascade do |t|
+    t.string "name"
+    t.integer "child_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["child_id"], name: "index_grandchildren_on_child_id"
+  end
+
   create_table "members", force: :cascade do |t|
     t.string "name"
     t.integer "user_group_id"
@@ -41,13 +57,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_24_133603) do
     t.index ["user_group_id"], name: "index_members_on_user_group_id"
   end
 
+  create_table "parents", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "user_groups", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "children", "parents"
   add_foreign_key "cultivars", "fruits"
   add_foreign_key "fruits", "foods"
+  add_foreign_key "grandchildren", "children"
   add_foreign_key "members", "user_groups"
 end
