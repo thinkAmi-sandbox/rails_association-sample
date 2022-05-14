@@ -14,12 +14,12 @@
 #
 # Foreign Keys
 #
-#  parent_id  (parent_id => parents.id)
+#  parent_id  (parent_id => parents.id) ON DELETE => cascade
 #
 class Child < ApplicationRecord
   before_destroy -> { puts '[Child] before destroy' }
   after_destroy -> { puts '[Child] after destroy' }
 
   belongs_to :parent
-  has_many :grandchildren, dependent: :delete_all
+  has_many :grandchildren
 end

@@ -14,7 +14,7 @@
 #
 # Foreign Keys
 #
-#  child_id  (child_id => children.id)
+#  child_id  (child_id => children.id) ON DELETE => cascade
 #
 class Grandchild < ApplicationRecord
   belongs_to :child

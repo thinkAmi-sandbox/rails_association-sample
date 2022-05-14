@@ -14,7 +14,7 @@
 #
 # Foreign Keys
 #
-#  parent_id  (parent_id => parents.id)
+#  parent_id  (parent_id => parents.id) ON DELETE => cascade
 #
 
 child_1_1:
