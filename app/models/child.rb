@@ -21,5 +21,5 @@ class Child < ApplicationRecord
   after_destroy -> { puts '[Child] after destroy' }
 
   belongs_to :parent
-  has_many :grandchildren
+  has_many :grandchildren, dependent: :destroy
 end

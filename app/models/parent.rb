@@ -11,5 +11,5 @@ class Parent < ApplicationRecord
   before_destroy -> { puts '[Parent] before destroy' }
   after_destroy -> { puts '[Parent] after destroy' }
 
-  has_many :children
+  has_many :children, dependent: :destroy
 end
