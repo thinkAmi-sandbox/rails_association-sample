@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: children
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  parent_id  :integer          not null
+#
+# Indexes
+#
+#  index_children_on_parent_id  (parent_id)
+#
+# Foreign Keys
+#
+#  parent_id  (parent_id => parents.id) ON DELETE => cascade
+#
+
+child_1_1:
+  name: 親1の子1
+  parent: parent_1
+
+child_1_2:
+  name: 親1の子2
+  parent: parent_1
+
+child_2:
+  name: 親2の子
+  parent: parent_2
