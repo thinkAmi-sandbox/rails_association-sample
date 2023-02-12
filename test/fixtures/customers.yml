@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: customers
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+foo:
+  id: 1
+  name: foo
+
+bar:
+  id: 2
+  name: bar
+
+baz:
+  id: 3
+  name: baz

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_14_013014) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_11_080850) do
   create_table "children", force: :cascade do |t|
     t.string "name"
     t.integer "parent_id", null: false
@@ -25,6 +25,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_14_013014) do
     t.datetime "updated_at", null: false
     t.integer "fruit_id"
     t.index ["fruit_id"], name: "index_cultivars_on_fruit_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "foods", force: :cascade do |t|
@@ -63,6 +69,30 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_14_013014) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reserved_products", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sale_by_customers", force: :cascade do |t|
+    t.string "memo"
+    t.integer "reserved_product_id", null: false
+    t.integer "customer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_sale_by_customers_on_customer_id"
+    t.index ["reserved_product_id"], name: "index_sale_by_customers_on_reserved_product_id"
+  end
+
+  create_table "sales", force: :cascade do |t|
+    t.string "memo"
+    t.integer "reserved_product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reserved_product_id"], name: "index_sales_on_reserved_product_id"
+  end
+
   create_table "user_groups", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -74,4 +104,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_14_013014) do
   add_foreign_key "fruits", "foods"
   add_foreign_key "grandchildren", "children", on_delete: :cascade
   add_foreign_key "members", "user_groups"
+  add_foreign_key "sale_by_customers", "customers"
+  add_foreign_key "sale_by_customers", "reserved_products"
+  add_foreign_key "sales", "reserved_products"
 end
