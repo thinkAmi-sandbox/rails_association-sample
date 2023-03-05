@@ -1,30 +1,23 @@
 # == Schema Information
 #
-# Table name: customers
+# Table name: employees
 #
 #  id         :integer          not null, primary key
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  country_id :integer
+#  plant_id   :integer
 #
 # Indexes
 #
-#  index_customers_on_country_id  (country_id)
+#  index_employees_on_plant_id  (plant_id)
 #
 # Foreign Keys
 #
-#  country_id  (country_id => countries.id)
+#  plant_id  (plant_id => plants.id)
 #
-
-foo:
-  id: 1
-  name: foo
-
-bar:
-  id: 2
-  name: bar
-
-baz:
-  id: 3
-  name: baz
+FactoryBot.define do
+  factory :employee do
+    
+  end
+end

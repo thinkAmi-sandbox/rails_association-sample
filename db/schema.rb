@@ -10,13 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_11_080850) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_04_064057) do
   create_table "children", force: :cascade do |t|
     t.string "name"
     t.integer "parent_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["parent_id"], name: "index_children_on_parent_id"
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "cultivars", force: :cascade do |t|
@@ -31,6 +37,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_080850) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "country_id"
+    t.index ["country_id"], name: "index_customers_on_country_id"
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string "name"
+    t.integer "plant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plant_id"], name: "index_employees_on_plant_id"
   end
 
   create_table "foods", force: :cascade do |t|
@@ -55,6 +71,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_080850) do
     t.index ["child_id"], name: "index_grandchildren_on_child_id"
   end
 
+  create_table "makers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "country_id"
+    t.index ["country_id"], name: "index_makers_on_country_id"
+  end
+
   create_table "members", force: :cascade do |t|
     t.string "name"
     t.integer "user_group_id"
@@ -69,10 +93,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_080850) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "plants", force: :cascade do |t|
+    t.string "name"
+    t.integer "maker_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["maker_id"], name: "index_plants_on_maker_id"
+  end
+
   create_table "reserved_products", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "maker_id"
+    t.integer "shop_id"
+    t.index ["maker_id"], name: "index_reserved_products_on_maker_id"
+    t.index ["shop_id"], name: "index_reserved_products_on_shop_id"
   end
 
   create_table "sale_by_customers", force: :cascade do |t|
@@ -93,6 +129,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_080850) do
     t.index ["reserved_product_id"], name: "index_sales_on_reserved_product_id"
   end
 
+  create_table "shops", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "user_groups", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -101,9 +143,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_080850) do
 
   add_foreign_key "children", "parents", on_delete: :cascade
   add_foreign_key "cultivars", "fruits"
+  add_foreign_key "customers", "countries"
+  add_foreign_key "employees", "plants"
   add_foreign_key "fruits", "foods"
   add_foreign_key "grandchildren", "children", on_delete: :cascade
+  add_foreign_key "makers", "countries"
   add_foreign_key "members", "user_groups"
+  add_foreign_key "plants", "makers"
+  add_foreign_key "reserved_products", "makers"
+  add_foreign_key "reserved_products", "shops"
   add_foreign_key "sale_by_customers", "customers"
   add_foreign_key "sale_by_customers", "reserved_products"
   add_foreign_key "sales", "reserved_products"

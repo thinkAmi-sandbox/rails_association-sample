@@ -1,30 +1,23 @@
 # == Schema Information
 #
-# Table name: reserved_products
+# Table name: plants
 #
 #  id         :integer          not null, primary key
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  maker_id   :integer
-#  shop_id    :integer
 #
 # Indexes
 #
-#  index_reserved_products_on_maker_id  (maker_id)
-#  index_reserved_products_on_shop_id   (shop_id)
+#  index_plants_on_maker_id  (maker_id)
 #
 # Foreign Keys
 #
 #  maker_id  (maker_id => makers.id)
-#  shop_id   (shop_id => shops.id)
 #
+require 'rails_helper'
 
-apple:
-  name: りんご
-
-banana:
-  name: バナナ
-
-grape:
-  name: ぶどう
+RSpec.describe Plant, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
+end

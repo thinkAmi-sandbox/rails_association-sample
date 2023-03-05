@@ -6,10 +6,24 @@
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  maker_id   :integer
+#  shop_id    :integer
+#
+# Indexes
+#
+#  index_reserved_products_on_maker_id  (maker_id)
+#  index_reserved_products_on_shop_id   (shop_id)
+#
+# Foreign Keys
+#
+#  maker_id  (maker_id => makers.id)
+#  shop_id   (shop_id => shops.id)
 #
 class ReservedProduct < ApplicationRecord
   has_many :sales
   has_many :sale_by_customers
+  belongs_to :maker, optional: true
+  belongs_to :shop, optional: true
 
   scope :no_reservations_by, ->(customer_id) {
     sql = ApplicationRecord.sanitize_sql_array(

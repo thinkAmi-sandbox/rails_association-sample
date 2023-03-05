@@ -29,6 +29,11 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+
+# テストで実行されたSQLを標準出力へ出力
+# https://stackoverflow.com/questions/5244486/how-do-i-turn-on-sql-debug-logging-for-activerecord-in-rspec-tests
+ActiveRecord::Base.logger = Logger.new($stdout)
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
