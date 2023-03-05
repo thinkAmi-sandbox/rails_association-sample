@@ -17,5 +17,5 @@
 #  country_id  (country_id => countries.id)
 #
 class Customer < ApplicationRecord
-  belongs_to :country
+  belongs_to :country, optional: true
 end
