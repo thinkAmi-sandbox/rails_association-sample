@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: customers
+# Table name: makers
 #
 #  id         :integer          not null, primary key
 #  name       :string
@@ -10,16 +10,14 @@
 #
 # Indexes
 #
-#  index_customers_on_country_id  (country_id)
+#  index_makers_on_country_id  (country_id)
 #
 # Foreign Keys
 #
 #  country_id  (country_id => countries.id)
 #
-require "test_helper"
-
-class CustomerTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+class Maker < ApplicationRecord
+  belongs_to :country, optional: true
+  has_many :plants
+  has_many :reserved_products
 end
